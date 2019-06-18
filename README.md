@@ -1,1 +1,1 @@
-open_factory_modelisation_temperature
+Vous trouverez ici tous les fichiers liés à la programmation du thermomètre lumineux, il est prêt a l'usage, il suffit de modifier les informations de connexion à MySQL et de générer la base de données via le script .sql (-:
