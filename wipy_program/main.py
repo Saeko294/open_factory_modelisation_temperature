@@ -13,7 +13,7 @@ while True:
 
     apin = adc.channel(pin=config.capteur_1) # Définition du port
     val_11 = apin() # Variable qui enregistre la tension du capteur
-    val_1 = 59000/val_11 # Opération qui calcule la température en degrés celsius à partir de la tension
+    val_1 = 54000/val_11 # Opération qui calcule la température en degrés celsius à partir de la tension
     print("Temperature C1: %d C" % val_1) # Affichage de la température dans le terminal
 
     apin = adc.channel(pin=config.capteur_2)
@@ -33,7 +33,7 @@ while True:
 
     apin = adc.channel(pin=config.capteur_5)
     val_55 = apin()
-    val_5 = 67000/val_55
+    val_5 = 69000/val_55
     print("Temperature C5: %d C" % val_5)
 
 # Requête HTTP qui va envoyer les données des capteurs à un script PHP (xampp/htdocs/write_data.php), ce script va generer une requête SQL qui va envoyer ces données dans la base de données
@@ -63,7 +63,7 @@ while True:
 
 # Affichage du signal lumineux sur la bande LED
 
-    chain = WS2812(ledNumber=config.leds) # Allumage des LED en rouge
+    chain = WS2812(ledNumber=25)
     data = [
         (led_rouge_1, 0, led_bleu_1),
         (led_rouge_1, 0, led_bleu_1),
@@ -92,4 +92,5 @@ while True:
         (led_rouge_5, 0, led_bleu_5),
         ]
     chain.show(data)
+    
     time.sleep(config.delay) # Pause de X temp entre chaques mesures (en secondes)
