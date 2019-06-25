@@ -45,7 +45,7 @@ led_bleu_X = 255 - led_rouge_X
 (led_rouge_X, 0, led_bleu_X),
 (led_rouge_X, 0, led_bleu_X),
 ```
-###Dans le fichier **index.php**
+### Dans le fichier **index.php**
 
 **À la ligne 16 :**
 ```
