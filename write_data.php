@@ -1,20 +1,21 @@
 <?php
 
-    // Prepare variables for database connection
+    // Varaiables pour la connection à la base de données
 
-    $dbusername = "";  // enter database username
-    $dbpassword = "";  // enter database password
+    $dbusername = "enzo";  // enter database username, I used "arduino" in step 2.2
+    $dbpassword = "dadada";  // enter database password, I used "arduinotest" in step 2.2
     $server = "localhost"; // IMPORTANT: if you are using XAMPP enter "localhost", but if you have an online website enter its address, ie."www.yourwebsite.com"
 
-    // Connect to your database
+    // Connection à la base de données
 
-    $dbconnect = mysqli_connect( $server, $dbusername, $dbpassword, 'dbname');
+    $dbconnect = mysqli_connect( $server, $dbusername, $dbpassword, 'arduino');
 
-    // Prepare the SQL statement
-
-    $req = "INSERT INTO temperature (temp, temp_2, temp_3, temp_4, temp_5) VALUES ('".$_GET["value"]."','".$_GET["value_2"]."','".$_GET["value_3"]."','".$_GET["value_4"]."','".$_GET["value_5"]."')";
-
-    // Execute SQL statement
+    // Préparer la requête SQL
+    $id_boite = filter_var($_GET["value"], FILTER_SANITIZE_STRING);
+    $temp = filter_var($_GET["value_2"], FILTER_SANITIZE_STRING);
+    $req = "INSERT INTO tempe (id_boite, temp) VALUES ('".$id_boite."','".$temp."')";
+    filter_input(INPUT_GET, "s", FILTER_SANITIZE_STRING);
+    // Executer la requête SQL
 
     $dbconnect->query($req);
 

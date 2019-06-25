@@ -4,11 +4,12 @@ from ws2812 import WS2812
 import time
 wlan = WLAN(mode=WLAN.STA)
 
+# changer le reseau pour wifi_connect ----> envoyer adresse mac
 nets = wlan.scan()
 for net in nets:
-    if net.ssid == 'congres':
+    if net.ssid == 'SSID':
         print('Network found!')
-        wlan.connect(net.ssid, auth=(net.sec, 'sufca!2019!dsiun'), timeout=500)
+        wlan.connect(net.ssid, auth=(net.sec, 'PASSWORD'), timeout=500)
         while not wlan.isconnected():
             chain = WS2812(ledNumber=5)
             data = [

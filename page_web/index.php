@@ -3,9 +3,9 @@
 	header("Refresh: 30; URL=$url");  // Refresh the webpage every 30 seconds
 	/* Database connection settings */
 	$host = 'localhost';
-	$user = 'user';
-	$pass = 'pass';
-	$db = 'database';
+	$user = 'enzo';
+	$pass = 'dadada';
+	$db = 'arduino';
 	$mysqli = new mysqli($host,$user,$pass,$db) or die($mysqli->error);
 
 	$data1 = '';
@@ -13,21 +13,52 @@
 	$data3 = '';
 	$data4 = '';
 	$data5 = '';
-	$data6 = '';
+
+	$data_time = '';
 
 	//query to get data from the table
-	$sql = "SELECT * FROM temperature ";
+	$sql = "SELECT * FROM tempe WHERE id_boite = 1 ";
     $result = mysqli_query($mysqli, $sql);
 
 	//loop through the returned data
 	while ($row = mysqli_fetch_array($result)) {
 
 		$data1 = $data1 . '"'. $row['temp'].'",';
-		$data2 = $data2 . '"'. $row['temp_2'] .'",';
-		$data3 = $data3 . '"'. $row['temp_3'] .'",';
-		$data4 = $data4 . '"'. $row['temp_4'].'",';
-		$data5 = $data5 . '"'. $row['temp_5'] .'",';
-		$data6 = $data6 . '"'. $row['time'] .'",';
+		$data_time = $data_time . '"'. $row['time'] .'",';
+	}
+
+	$sql = "SELECT * FROM tempe WHERE id_boite = 2 ";
+    $result = mysqli_query($mysqli, $sql);
+
+	//loop through the returned data
+	while ($row = mysqli_fetch_array($result)) {
+
+		$data2 = $data2 . '"'. $row['temp'].'",';
+	}
+
+	$sql = "SELECT * FROM tempe WHERE id_boite = 3 ";
+		$result = mysqli_query($mysqli, $sql);
+
+	//loop through the returned data
+	while ($row = mysqli_fetch_array($result)) {
+
+		$data3 = $data3 . '"'. $row['temp'].'",';
+	}
+	$sql = "SELECT * FROM tempe WHERE id_boite = 4 ";
+		$result = mysqli_query($mysqli, $sql);
+
+	//loop through the returned data
+	while ($row = mysqli_fetch_array($result)) {
+
+		$data4 = $data4 . '"'. $row['temp'].'",';
+	}
+	$sql = "SELECT * FROM tempe WHERE id_boite = 5 ";
+		$result = mysqli_query($mysqli, $sql);
+
+	//loop through the returned data
+	while ($row = mysqli_fetch_array($result)) {
+
+		$data5 = $data5 . '"'. $row['temp'].'",';
 	}
 
 	$data1 = trim($data1,",");
@@ -35,7 +66,8 @@
 	$data3 = trim($data3,",");
 	$data4 = trim($data4,",");
 	$data5 = trim($data5,",");
-	$data6 = trim($data6,",");
+
+	$data_time = trim($data_time,",");
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +107,7 @@
     			var myChart = new Chart(ctx, {
         		type: 'line',
 		        data: {
-		            labels: [<?php echo $data6; ?>],
+		            labels: [<?php echo $data_time; ?>],
 		            datasets:
 		            [{
 		                label: 'Capteur 1',
@@ -112,7 +144,9 @@
 		                backgroundColor: 'transparent',
 		                borderColor:'rgba(41, 128, 185)',
 		                borderWidth: 3
-		            },]
+		            },
+
+							]
 		        },
 
 		        options: {

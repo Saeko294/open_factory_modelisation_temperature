@@ -14,4 +14,8 @@ capteur_5 = "P17"
 
 # Délai entre les différentes mesures de la température (en secondes)
 
-delay = 60
+delay = 900
+
+# Adresse du serveur
+
+host = "172.19.241.240"
