@@ -13,6 +13,7 @@
 	$data3 = '';
 	$data4 = '';
 	$data5 = '';
+	""" INSERER LE BLOC 1 ICI """
 
 	$data_time = '';
 
@@ -61,11 +62,14 @@
 		$data5 = $data5 . '"'. $row['temp'].'",';
 	}
 
+	""" INSERER LE BLOC 2 ICI """
+
 	$data1 = trim($data1,",");
 	$data2 = trim($data2,",");
 	$data3 = trim($data3,",");
 	$data4 = trim($data4,",");
 	$data5 = trim($data5,",");
+	""" INSERER LE BLOC 3 ICI """
 
 	$data_time = trim($data_time,",");
 ?>
@@ -145,6 +149,8 @@
 		                borderColor:'rgba(41, 128, 185)',
 		                borderWidth: 3
 		            },
+
+		""" INSERER LE BLOC 4 ICI """
 
 							]
 		        },

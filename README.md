@@ -6,11 +6,11 @@
 
 ## Ajouter un bloc LED
 
-Ajouter et adapter les lignes de code suivantes (exemple : **si on ajoute un sixième bloc LED, remplacer les X par des 6**).
+Ajouter et adapter les BLOCs au niveaux des commentaires "INSERER" (exemple : **si on ajoute un sixième bloc LED, remplacer les X par des 6**).
 
 ### Dans le fichier **main.py**
 
-**À la ligne 84**
+**BLOC 1 :**
 ```
 apin = adc.channel(pin=config.capteur_X)
     val = apin()
@@ -21,37 +21,37 @@ apin = adc.channel(pin=config.capteur_X)
     val_X3 = 69000/val
     val_X = (val_X1+val_X2+val_X3)/3
     print("Temperature CX: %d C" % val_X)
-
-    bloc=bloc+1
-    urequest.request("GET","https://{ip}/write_data.php?value={id_boite}&value_2={temp}".format(ip=config.host,id_boite=bloc,temp=val_X),None)
-
 ```
-
-**À la ligne 108 :**
+**BLOC 2 :**
 ```
 led_rouge_X = fonction.translate(val_X,config.leftMin,config.leftMax,0,255)
 led_bleu_X = 255 - led_rouge_X
 ```
-
-
-
-
-
-**À la ligne 138 :**
+**BLOC 3 :**
 ```
 (led_rouge_X, 0, led_bleu_X),
 (led_rouge_X, 0, led_bleu_X),
 (led_rouge_X, 0, led_bleu_X),
 (led_rouge_X, 0, led_bleu_X),
 (led_rouge_X, 0, led_bleu_X),
+```
+**BLOC 4 :**
+```
+bloc=bloc+1
+mathe.requete(config.host,val_X,bloc)
+```
+### Dans le fichier **config.php**
+**BLOC 1 :**
+```
+capteur_X = "P??"
 ```
 ### Dans le fichier **index.php**
 
-**À la ligne 16 :**
+**BLOC 1 :**
 ```
 $dataX = '';
 ```
-**À la ligne 63 :**
+**BLOC 2 :**
 ```
 $sql = "SELECT * FROM tempe WHERE id_boite = X ";
 	$result = mysqli_query($mysqli, $sql);
@@ -62,22 +62,19 @@ while ($row = mysqli_fetch_array($result)) {
 	$dataX = $dataX . '"'. $row['temp'].'",';
 }
 ```
-**À la ligne 69 :**
+**BLOC 3 :**
 ```
-	$data5 = trim($data5,",");
+	$dataX = trim($dataX,",");
 ```
-
-
-
-**À la ligne 148 :**
+**BLOC 4 :**
 ```
 {
-		                label: 'Capteur X',
-		                data: [<?php echo $dataX; ?>],
-		                backgroundColor: 'transparent',
-		                borderColor:'rgba(RRR, GGG, BBB)',
-		                borderWidth: 3
-		            },
+	 label: 'Capteur X',
+	 data: [<?php echo $dataX; ?>],
+	 backgroundColor: 'transparent',
+	 borderColor:'rgba(RRR, GGG, BBB)',
+	 borderWidth: 3
+},
 ```
 
 ## config.php
@@ -102,5 +99,5 @@ delay = 900
 
 # Adresse du serveur
 
-host = "172.19.241.240"
+host = "adresse_ip"
 ```

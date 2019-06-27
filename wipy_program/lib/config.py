@@ -11,6 +11,7 @@ capteur_2 = "P14"
 capteur_3 = "P15"
 capteur_4 = "P16"
 capteur_5 = "P17"
+''' INSERER BLOC 1 ICI '''
 
 # Délai entre les différentes mesures de la température (en secondes)
 
