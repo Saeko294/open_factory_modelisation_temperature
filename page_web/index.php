@@ -3,17 +3,16 @@
 	header("Refresh: 30; URL=$url");  // Refresh the webpage every 30 seconds
 	/* Database connection settings */
 	$host = 'localhost';
-	$user = 'enzo';
-	$pass = 'dadada';
-	$db = 'arduino';
-	$mysqli = new mysqli($host,$user,$pass,$db) or die($mysqli->error);
+	$user = '';
+	$pass = '';
+	$db = '';
+	$mysqli = new mysqli($host,$user,$pass,$db,8080) or die($mysqli->error);
 
 	$data1 = '';
 	$data2 = '';
 	$data3 = '';
 	$data4 = '';
 	$data5 = '';
-	""" INSERER LE BLOC 1 ICI """
 
 	$data_time = '';
 
@@ -62,14 +61,11 @@
 		$data5 = $data5 . '"'. $row['temp'].'",';
 	}
 
-	""" INSERER LE BLOC 2 ICI """
-
 	$data1 = trim($data1,",");
 	$data2 = trim($data2,",");
 	$data3 = trim($data3,",");
 	$data4 = trim($data4,",");
 	$data5 = trim($data5,",");
-	""" INSERER LE BLOC 3 ICI """
 
 	$data_time = trim($data_time,",");
 ?>
@@ -102,6 +98,7 @@
 	</head>
 
 	<body>
+		<a href="index_2.php" target="_blank"><input type="button" value="Température moyenne"></a>
 	    <div class="container">
 	    <h1>CAPTEUR DE TEMPÉRATURE</h1>
 			<canvas id="chart" style="width: 100%; height: 65vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
@@ -149,8 +146,6 @@
 		                borderColor:'rgba(41, 128, 185)',
 		                borderWidth: 3
 		            },
-
-		""" INSERER LE BLOC 4 ICI """
 
 							]
 		        },
